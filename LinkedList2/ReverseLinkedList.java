@@ -60,11 +60,10 @@ public class ReverseLinkedList {
 		if(head == null || head.next == null){
             return head;
         }
-        LinkedListNode<Integer> ans = reverseLinkedListRec(head.next);
         LinkedListNode<Integer> tail = head.next;
+        LinkedListNode<Integer> ans = reverseLinkedListRec(head.next);
         tail.next = head;
         head.next = null;
         return ans;
-        
 	}
 }
