@@ -23,7 +23,6 @@ public class ReverseLL2 extends LInkedListUse{
     }
 
     public static void main(String[] args) {
-        
         Node<Integer> head = takeInput();
         DoubleNode ans = reverseLLBetter(head);
         print(ans.head);
