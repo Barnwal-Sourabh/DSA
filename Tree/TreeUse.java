@@ -103,11 +103,55 @@ public class TreeUse {
 
 	}
 
+    public static int sumOfAllNode(TreeNode<Integer> root){
+        if(root == null){
+            return 0;
+        }
+		int sum = root.data;
+        
+        for(int i = 0; i<root.children.size(); i++){
+            sum += sumOfAllNode(root.children.get(i));
+        }
+        return sum;
+	}
+
+    public static int numNodes(TreeNode<Integer> root){
+        if(root == null){
+            return 0;
+        }
+        int count = 1;
+        for(int i = 0; i<root.children.size(); i++){
+            count += numNodes(root.children.get(i));
+        }
+        return count;
+    }
+
+    public static int largest(TreeNode<Integer> root){
+        if(root == null){
+            return Integer.MIN_VALUE;
+        }
+        
+        int ans = root.data;
+        for(int i=0; i<root.children.size(); i++){
+            int childLargest = largest(root.children.get(i));
+            if(childLargest > ans){
+                ans = childLargest;
+            }
+        }  
+        return ans;
+    }
+
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
         TreeNode<Integer> root = takeInputLevelwise();
         printLevelWise(root);
+        int count = numNodes(root);
+        int sum = sumOfAllNode(root);
+        System.out.println();
+        System.out.println("Total number of node is : "+ count);
+        System.out.println("Sum of all Nodes: "+ sum);
+        System.out.println("Largest Node in tree : "+numNodes(root));
         // TreeNode<Integer> root = new TreeNode<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
