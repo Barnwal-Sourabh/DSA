@@ -72,11 +72,42 @@ public class TreeUse {
         
     }
 
+    public static void printLevelWise(TreeNode<Integer> root){
+		QueueUsingLL<TreeNode<Integer>> queue = new QueueUsingLL<>();
+        queue.enqueue(root);
+        queue.enqueue(null);
+        
+        while(!queue.isEmpty()){
+            try{
+            TreeNode<Integer> frontNode = queue.dequeue();
+			if(frontNode == null){
+                if(queue.isEmpty()){
+                    break;
+                }
+                System.out.println();
+            	queue.enqueue(null);
+            }else {
+                System.out.print(frontNode.data +" ");
+                for(int i = 0; i<frontNode.children.size(); i++){
+                    queue.enqueue(frontNode.children.get(i));
+                }
+            }
+                
+            } catch (QueueEmptyException e) {
+                //shouldn't come here
+			}
+                
+        }    
+        
+        
+
+	}
+
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
         TreeNode<Integer> root = takeInputLevelwise();
-        print(root);
+        printLevelWise(root);
         // TreeNode<Integer> root = new TreeNode<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
