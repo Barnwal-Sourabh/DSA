@@ -155,6 +155,17 @@ public class TreeUse {
         return count;
 	}
 
+    public static int getHeight(TreeNode<Integer> root){
+		int height = 0;
+        for(int i = 0; i<root.children.size(); i++){
+            int childHeight = getHeight(root.children.get(i));
+            if(childHeight > height){
+                height = childHeight;
+            }
+        }
+        return height+1;
+	}
+
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
