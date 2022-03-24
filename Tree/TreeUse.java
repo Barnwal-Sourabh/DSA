@@ -4,6 +4,8 @@ package Tree;
 
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 import Queues.QueueEmptyException;
 import Queues.QueueUsingLL;
 
@@ -194,6 +196,29 @@ public class TreeUse {
         }
         return countLeaf;
     }
+
+    public static void preOrder(TreeNode<Integer> root){
+        if(root == null){
+            return;
+        }
+        System.out.print(root.data +" ");
+
+        for(int i = 0; i<root.children.size(); i++){
+            preOrder(root.children.get(i));
+        }
+    }
+    public static void postOrder(TreeNode<Integer> root){
+        if(root == null){
+            return;
+        }
+     
+
+        for(int i = 0; i<root.children.size(); i++){
+            postOrder(root.children.get(i));
+        }
+        System.out.print(root.data +" ");
+    }
+
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
@@ -208,7 +233,12 @@ public class TreeUse {
         // printAtK(root, 1);
         int countLeaf = countLeafOfNodes(root);
         System.out.println("Number of leaf :"+countLeaf);
-        // TreeNode<Integer> root = new TreeNode<Integer>(4);
+
+        preOrder(root);
+        System.out.println();
+        postOrder(root);
+
+        // TreeNode<Integer> root = new TreeNo1 2de<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
         // TreeNode<Integer> node3 = new TreeNode<Integer>(5);
