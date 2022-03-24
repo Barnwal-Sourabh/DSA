@@ -180,6 +180,20 @@ public class TreeUse {
         }
     }
 
+    public static int countLeafOfNodes(TreeNode<Integer> root){
+        if(root == null){
+            return 0;
+        }
+        int countLeaf = 0;
+        if(root.children.size() == 0){
+            countLeaf++;
+        }
+
+        for(int i = 0; i<root.children.size(); i++){
+            countLeaf += countLeafOfNodes(root.children.get(i));
+        }
+        return countLeaf;
+    }
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
@@ -191,7 +205,9 @@ public class TreeUse {
         System.out.println("Total number of node is : "+ count);
         System.out.println("Sum of all Nodes: "+ sum);
         System.out.println("Largest Node in tree : "+largest(root));
-        printAtK(root, 1);
+        // printAtK(root, 1);
+        int countLeaf = countLeafOfNodes(root);
+        System.out.println("Number of leaf :"+countLeaf);
         // TreeNode<Integer> root = new TreeNode<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
