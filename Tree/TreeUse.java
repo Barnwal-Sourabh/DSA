@@ -166,6 +166,20 @@ public class TreeUse {
         return height+1;
 	}
 
+    public static void printAtK(TreeNode<Integer> root, int k){
+        if(k < 0){
+            return;
+        }
+        if(k == 0){
+            System.out.println(root.data);
+            return;
+        }
+        
+        for(int i = 0; i<root.children.size(); i++){
+            printAtK(root.children.get(i), k-1);
+        }
+    }
+
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
@@ -177,6 +191,7 @@ public class TreeUse {
         System.out.println("Total number of node is : "+ count);
         System.out.println("Sum of all Nodes: "+ sum);
         System.out.println("Largest Node in tree : "+largest(root));
+        printAtK(root, 1);
         // TreeNode<Integer> root = new TreeNode<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
