@@ -4,7 +4,6 @@ package Tree;
 
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 import Queues.QueueEmptyException;
 import Queues.QueueUsingLL;
@@ -219,6 +218,22 @@ public class TreeUse {
         System.out.print(root.data +" ");
     }
 
+    public static boolean checkIfContainsX(TreeNode<Integer> root, int x){
+		if(root == null){
+            return false;
+        }
+        boolean ans = false;
+       
+        if(root.data == x){
+            ans = true;
+        }
+        
+        for(int i =0; i<root.children.size(); i++){
+            checkIfContainsX(root.children.get(i), x);
+        }
+		return ans;
+	}
+
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
@@ -237,7 +252,9 @@ public class TreeUse {
         preOrder(root);
         System.out.println();
         postOrder(root);
-
+        System.out.println();
+        boolean checkX = checkIfContainsX(root, 40);
+        System.out.println(checkX);
         // TreeNode<Integer> root = new TreeNo1 2de<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
