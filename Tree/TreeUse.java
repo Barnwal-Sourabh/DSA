@@ -234,6 +234,31 @@ public class TreeUse {
 		return ans;
 	}
 
+    public static TreeNode<Integer> maxSumNode(TreeNode<Integer> root){
+        if(root == null){
+            return root;
+        }
+        int largestSum = 0;
+        TreeNode<Integer> ans = null;
+
+        for(int i=0; i<root.children.size(); i++){
+            maxSumNode(root.children.get(i));
+        }
+
+        int treesum = root.data;
+        for(int i=0; i<root.children.size(); i++){
+            treesum += root.children.get(i).data;
+        }
+
+        if(treesum > largestSum){
+            largestSum = treesum;
+            ans = root;
+        }
+        return ans;
+
+    }
+
+
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
@@ -255,6 +280,9 @@ public class TreeUse {
         System.out.println();
         boolean checkX = checkIfContainsX(root, 40);
         System.out.println(checkX);
+
+        TreeNode<Integer> largestNodeSum = maxSumNode(root);
+        System.out.println("Maximum sum node is :" + largestNodeSum.data); 
         // TreeNode<Integer> root = new TreeNo1 2de<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
