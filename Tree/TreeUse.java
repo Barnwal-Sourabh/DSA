@@ -258,6 +258,21 @@ public class TreeUse {
 
     }
 
+    static boolean identical = true;
+	public static boolean checkIdentical(TreeNode<Integer> root1, TreeNode<Integer> root2){
+		
+       
+        if(root1.children.size() != root2.children.size()){
+            return identical = false;
+        }    
+        
+        for(int i =0; i<root1.children.size(); i++){
+        		checkIdentical(root1.children.get(i), root2.children.get(i));
+        }
+           
+        return identical;
+		
+	}
 
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
@@ -283,6 +298,10 @@ public class TreeUse {
 
         TreeNode<Integer> largestNodeSum = maxSumNode(root);
         System.out.println("Maximum sum node is :" + largestNodeSum.data); 
+        TreeNode<Integer> root1 = takeInputLevelwise();
+        boolean identicaltree = checkIdentical(root, root1);
+        System.out.println(identicaltree); 
+
         // TreeNode<Integer> root = new TreeNo1 2de<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
