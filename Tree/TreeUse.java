@@ -274,6 +274,27 @@ public class TreeUse {
 		
 	}
 
+    public static TreeNode<Integer> findNextLargerNode(TreeNode<Integer> root, int n){
+		if(root == null){
+            return null;
+        }
+        
+        TreeNode<Integer> nextLargerNode = null;
+		if(root.data > n){
+ 			nextLargerNode = root;
+ 		}
+		
+ 		for(TreeNode<Integer> child : root.children){
+			TreeNode<Integer> nextLargerInChild = findNextLargerNode(child, n);
+ 			if(nextLargerInChild != null ){
+ 				if(nextLargerNode == null || nextLargerNode.data > nextLargerInChild.data){
+			 		nextLargerNode = nextLargerInChild;
+ 				}
+ 			}
+ 		}
+ 		return nextLargerNode;
+	}
+
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
@@ -301,7 +322,8 @@ public class TreeUse {
         TreeNode<Integer> root1 = takeInputLevelwise();
         boolean identicaltree = checkIdentical(root, root1);
         System.out.println(identicaltree); 
-
+        TreeNode<Integer> nextLargerNode = findNextLargerNode(root, 18);
+        System.out.println(nextLargerNode.data);
         // TreeNode<Integer> root = new TreeNo1 2de<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
