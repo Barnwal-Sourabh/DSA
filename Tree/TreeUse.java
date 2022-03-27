@@ -127,20 +127,20 @@ public class TreeUse {
         return count;
     }
 
-    public static int largest(TreeNode<Integer> root){
-        if(root == null){
-            return Integer.MIN_VALUE;
-        }
+    // // public static int largest(TreeNode<Integer> root){
+    //     if(root == null){
+    //         return Integer.MIN_VALUE;
+    //     }
         
-        int ans = root.data;
-        for(int i=0; i<root.children.size(); i++){
-            int childLargest = largest(root.children.get(i));
-            if(childLargest > ans){
-                ans = childLargest;
-            }
-        }  
-        return ans;
-    }
+    //     int ans = root.data;
+    //     for(int i=0; i<root.children.size(); i++){
+    //         int childLargest = largest(root.children.get(i));
+    //         if(childLargest > ans){
+    //             ans = childLargest;
+    //         }
+    //     }  
+    //     return ans;
+    // }
 
     public static int numNodeGreater(TreeNode<Integer> root,int x){
 		if(root == null){
@@ -295,6 +295,50 @@ public class TreeUse {
  		return nextLargerNode;
 	}
 
+    static int largestNode = 0;
+    public static void largest(TreeNode<Integer> root){
+        if(root.data > largestNode){
+            largestNode = root.data;
+        }
+        for(int i = 0; i < root.children.size(); i++){
+            largest(root.children.get(i));
+        }
+    } 
+    public static TreeNode<Integer> findSecondLargest(TreeNode<Integer> root){
+        // Write your code here
+        largest(root);
+           return findSmallerNode(root,largestNode);
+
+    }
+    public static TreeNode<Integer> findSmallerNode(TreeNode<Integer> root, int n){
+
+        // Write your code here
+        if(root == null)
+        {
+            return null;
+        }
+
+        int nearest = Integer.MIN_VALUE;
+        TreeNode<Integer> nearestNode = null;
+        TreeNode<Integer> ret = null;
+
+        if(root.data < n )
+        {
+            nearestNode = root;
+            nearest = root.data;
+        }
+        for(int i = 0; i < root.children.size(); i++)
+        {
+            ret = findSmallerNode(root.children.get(i),n);
+            if(ret!=null && ret.data>nearest)
+            {
+                nearestNode = ret;
+                nearest = ret.data;
+            }
+        }
+        return nearestNode;
+    }
+
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
@@ -305,7 +349,7 @@ public class TreeUse {
         System.out.println();
         System.out.println("Total number of node is : "+ count);
         System.out.println("Sum of all Nodes: "+ sum);
-        System.out.println("Largest Node in tree : "+largest(root));
+        // System.out.println("Largest Node in tree : "+largest(root));
         // printAtK(root, 1);
         int countLeaf = countLeafOfNodes(root);
         System.out.println("Number of leaf :"+countLeaf);
