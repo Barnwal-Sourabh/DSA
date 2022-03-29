@@ -11,7 +11,7 @@ import Queues.QueueUsingLL;
 
 
 public class TreeUse {
-
+    static Scanner s = new Scanner(System.in);
     public static TreeNode<Integer> takeInput(Scanner s){
         int n;
        
@@ -43,7 +43,7 @@ public class TreeUse {
     }
 
     public static TreeNode<Integer> takeInputLevelwise(){
-        Scanner s = new Scanner(System.in);
+        //;
         System.out.println("Enter root data");
         int rootData = s.nextInt();
         QueueUsingLL<TreeNode<Integer>> pendingNodes = new QueueUsingLL<>();
@@ -340,7 +340,7 @@ public class TreeUse {
     }
 
     public static void main(String[] args) {
-        // Scanner s = new Scanner(System.in);
+        //  ;
         // TreeNode<Integer> root = takeInput(s);
         TreeNode<Integer> root = takeInputLevelwise();
         printLevelWise(root);
