@@ -68,7 +68,7 @@ public class TreeUse {
         }
 
         }
-
+        s.close();
         return root;
         
     }
