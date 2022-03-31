@@ -155,7 +155,7 @@ public class TreeUse {
 		}
         return count;
 	}
-
+// 1 2 2 3 2 4 5 -1 -1 -1 
     public static int getHeight(TreeNode<Integer> root){
 		int height = 0;
         for(int i = 0; i<root.children.size(); i++){
@@ -343,31 +343,32 @@ public class TreeUse {
         // Scanner s = new Scanner(System.in);
         // TreeNode<Integer> root = takeInput(s);
         TreeNode<Integer> root = takeInputLevelwise();
-        printLevelWise(root);
-        int count = numNodes(root);
-        int sum = sumOfAllNode(root);
-        System.out.println();
-        System.out.println("Total number of node is : "+ count);
-        System.out.println("Sum of all Nodes: "+ sum);
-        // System.out.println("Largest Node in tree : "+largest(root));
-        // printAtK(root, 1);
-        int countLeaf = countLeafOfNodes(root);
-        System.out.println("Number of leaf :"+countLeaf);
+        System.out.println(numNodeGreater(root, 2));
+        // printLevelWise(root);
+        // int count = numNodes(root);
+        // int sum = sumOfAllNode(root);
+        // System.out.println();
+        // System.out.println("Total number of node is : "+ count);
+        // System.out.println("Sum of all Nodes: "+ sum);
+        // // System.out.println("Largest Node in tree : "+largest(root));
+        // // printAtK(root, 1);
+        // int countLeaf = countLeafOfNodes(root);
+        // System.out.println("Number of leaf :"+countLeaf);
 
-        preOrder(root);
-        System.out.println();
-        postOrder(root);
-        System.out.println();
-        boolean checkX = checkIfContainsX(root, 40);
-        System.out.println(checkX);
+        // preOrder(root);
+        // System.out.println();
+        // postOrder(root);
+        // System.out.println();
+        // boolean checkX = checkIfContainsX(root, 40);
+        // System.out.println(checkX);
 
-        TreeNode<Integer> largestNodeSum = maxSumNode(root);
-        System.out.println("Maximum sum node is :" + largestNodeSum.data); 
-        TreeNode<Integer> root1 = takeInputLevelwise();
-        boolean identicaltree = checkIdentical(root, root1);
-        System.out.println(identicaltree); 
-        TreeNode<Integer> nextLargerNode = findNextLargerNode(root, 18);
-        System.out.println(nextLargerNode.data);
+        // TreeNode<Integer> largestNodeSum = maxSumNode(root);
+        // System.out.println("Maximum sum node is :" + largestNodeSum.data); 
+        // TreeNode<Integer> root1 = takeInputLevelwise();
+        // boolean identicaltree = checkIdentical(root, root1);
+        // System.out.println(identicaltree); 
+        // TreeNode<Integer> nextLargerNode = findNextLargerNode(root, 18);
+        // System.out.println(nextLargerNode.data);
         // TreeNode<Integer> root = new TreeNo1 2de<Integer>(4);
         // TreeNode<Integer> node1 = new TreeNode<Integer>(2);
         // TreeNode<Integer> node2 = new TreeNode<Integer>(3);
