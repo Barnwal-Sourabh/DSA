@@ -295,49 +295,7 @@ public class TreeUse {
  		return nextLargerNode;
 	}
 
-    static int largestNode = 0;
-    public static void largest(TreeNode<Integer> root){
-        if(root.data > largestNode){
-            largestNode = root.data;
-        }
-        for(int i = 0; i < root.children.size(); i++){
-            largest(root.children.get(i));
-        }
-    } 
-    public static TreeNode<Integer> findSecondLargest(TreeNode<Integer> root){
-        // Write your code here
-        largest(root);
-           return findSmallerNode(root,largestNode);
-
-    }
-    public static TreeNode<Integer> findSmallerNode(TreeNode<Integer> root, int n){
-
-        // Write your code here
-        if(root == null)
-        {
-            return null;
-        }
-
-        int nearest = Integer.MIN_VALUE;
-        TreeNode<Integer> nearestNode = null;
-        TreeNode<Integer> ret = null;
-
-        if(root.data < n )
-        {
-            nearestNode = root;
-            nearest = root.data;
-        }
-        for(int i = 0; i < root.children.size(); i++)
-        {
-            ret = findSmallerNode(root.children.get(i),n);
-            if(ret!=null && ret.data>nearest)
-            {
-                nearestNode = ret;
-                nearest = ret.data;
-            }
-        }
-        return nearestNode;
-    }
+    
 
     public static void main(String[] args) {
         // Scanner s = new Scanner(System.in);
