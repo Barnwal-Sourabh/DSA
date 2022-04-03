@@ -156,6 +156,7 @@ public class BinaryTreeUse {
     }
     
     public static void inorder(BinaryTreeNode<Integer> root){
+
         if(root == null){
             return;
         }
@@ -163,4 +164,15 @@ public class BinaryTreeUse {
         System.out.print(root.data +" ");
         inorder(root.right);
     }
+
+    public static void preOrder(BinaryTreeNode<Integer> root) {
+		if(root == null){
+            return;
+        }
+        
+        System.out.print(root.data +" ");
+        preOrder(root.left);
+        preOrder(root.right);
+	}
+
 }
