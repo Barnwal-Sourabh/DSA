@@ -20,8 +20,9 @@ public class BinaryTreeUse {
         // System.out.println(countNodes(root));
         // System.out.println("Diameter :" + diameter(root));
 
-        System.out.println("Diameter is : "+heightDiameter(root).second);
-        System.out.println("height is : "+heightDiameter(root).first);
+        // System.out.println("Diameter is : "+heightDiameter(root).second);
+        // System.out.println("height is : "+heightDiameter(root).first);
+        inorder(root);
         
     }
 
@@ -154,5 +155,12 @@ public class BinaryTreeUse {
         return output;
     }
     
-    
+    public static void inorder(BinaryTreeNode<Integer> root){
+        if(root == null){
+            return;
+        }
+        inorder(root.left);
+        System.out.print(root.data +" ");
+        inorder(root.right);
+    }
 }
