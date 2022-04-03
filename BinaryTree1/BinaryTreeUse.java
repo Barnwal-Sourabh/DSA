@@ -22,7 +22,9 @@ public class BinaryTreeUse {
 
         // System.out.println("Diameter is : "+heightDiameter(root).second);
         // System.out.println("height is : "+heightDiameter(root).first);
-        inorder(root);
+        // inorder(root);
+        // preOrder(root);
+        postOrder(root);
         
     }
 
@@ -175,4 +177,14 @@ public class BinaryTreeUse {
         preOrder(root.right);
 	}
 
+    public static void postOrder(BinaryTreeNode<Integer> root) {
+		
+        if(root == null){
+            return;
+        }
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.data +" ");
+        
+	}
 }
