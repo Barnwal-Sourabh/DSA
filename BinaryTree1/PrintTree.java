@@ -1,11 +1,10 @@
-package BinaryTree1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class NodesWithoutSibling {
+public class PrintTree {
 
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -57,28 +56,50 @@ public class NodesWithoutSibling {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BinaryTreeNode<Integer> root = takeInput();
-
-		NodesWithoutSibling.printNodesWithoutSibling(root);
 		
+		PrintTree.printLevelWise(root);
 	}
-
-	public static void printNodesWithoutSibling(BinaryTreeNode<Integer> root){
+    public static void printLevelWise(BinaryTreeNode<Integer> root) {
 		if(root == null){
-			return;
-		}
-		if(root.left == null && root.right == null){
-			return;
-		}
-
-		if(root.left == null){
-			System.out.println(root.right.data + " ");
-			printNodesWithoutSibling(root.right);
-		}else if(root.right == null){
-			System.out.println(root.left.data +" ");
-			printNodesWithoutSibling(root.left);
-		}else {
-			printNodesWithoutSibling(root.right);
-			printNodesWithoutSibling(root.left);
-		}
+        	return;
+        }
+        Queue<BinaryTreeNode<Integer>>  pendingNodes = new LinkedList<BinaryTreeNode<Integer>>(); 
+        pendingNodes.add(root);
+        
+        while(!pendingNodes.isEmpty()){
+            BinaryTreeNode<Integer> front;
+			try {
+				front = pendingNodes.poll();
+			} catch (Exception e) {
+				return;
+			}
+            
+            if(front == null){
+                if(pendingNodes.isEmpty()){
+                    break;
+                }
+            	System.out.println();
+            }else{   
+				System.out.print(front.data + ":");
+                if(front.left != null){
+        			pendingNodes.add(front.left);
+					System.out.print("L:" + front.left.data + ",");            
+					
+                }else {
+                    System.out.print("L:" + "-1" + ",");
+                }
+                
+                if(front.right != null){
+            		pendingNodes.add(front.right);
+                    System.out.print("R:" + front.right.data); 
+                   
+        		}else {
+                    System.out.print("R:" + "-1");
+                }
+                
+            }
+            System.out.println();
+        }
+        
 	}
 }

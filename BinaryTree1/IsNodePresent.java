@@ -1,10 +1,11 @@
-package BinaryTree1;
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class MirrorBinaryTree {
+public class IsNodePresent {
 
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -54,55 +55,24 @@ public class MirrorBinaryTree {
 		return root;
 	}
 
-
-	private static void printLevelWise(BinaryTreeNode<Integer> root){
-		Queue<BinaryTreeNode<Integer>>  primary = new LinkedList<>();
-		Queue<BinaryTreeNode<Integer>>  secondary = new LinkedList<>();
-
-		primary.add(root);
-
-		while(!primary.isEmpty()){
-			BinaryTreeNode<Integer> current=null;
-			try {
-				current = primary.poll();
-			} catch (Exception e) {
-				System.out.println("Not possible");
-			}
-			System.out.print(current.data + " ");
-			if(current.left != null){
-				secondary.add(current.left);
-			}
-			if(current.right != null){
-				secondary.add(current.right);
-			}
-			if(primary.isEmpty()){
-		        Queue<BinaryTreeNode<Integer>>  temp = secondary;
-				secondary = primary;
-				primary = temp;
-				System.out.println();
-			}
-		}
-	}
-
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BinaryTreeNode<Integer> root = takeInput();
+		int x = Integer.parseInt(br.readLine().trim());
+
+		boolean ans = IsNodePresent.isNodePresent(root, x);
 		
-		MirrorBinaryTree.mirrorBinaryTree(root);
-		printLevelWise(root);
-		
+		System.out.println(ans);
 	}
 
-    public static void mirrorBinaryTree(BinaryTreeNode<Integer> root){
-			if(root == null){
-				return;
-			}
-			
-			BinaryTreeNode<Integer> temp = root.left;
-			root.left = root.right;
-			root.right = temp;
-			
-			mirrorBinaryTree(root.left);
-			mirrorBinaryTree(root.right);
-		
+    public static boolean isNodePresent(BinaryTreeNode<Integer> root, int x) {
+	    if(root == null){
+            return false;
+        }
+        
+        if(root.data == x){
+		    return true;
+       }else{ 
+        	return isNodePresent(root.left, x) || isNodePresent(root.right, x);
+    	}
 	}
 }

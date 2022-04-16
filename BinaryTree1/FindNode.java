@@ -1,14 +1,11 @@
-package BinaryTree1;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*; 
 
-
-
-public class FindHeightBinaryTree {
+public class FindNode {
 
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -21,7 +18,7 @@ public class FindHeightBinaryTree {
 		if (nodeDatas.length == 1) {
 			return null;
 		}
-		
+
 		int rootData = Integer.parseInt(nodeDatas[start]);
 		start += 1;
 
@@ -60,21 +57,27 @@ public class FindHeightBinaryTree {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BinaryTreeNode<Integer> root = takeInput();
-		
-		int h = FindHeightBinaryTree.height(root);
+		int x = Integer.parseInt(br.readLine().trim());
 
-		System.out.println(h);
+		boolean ans = FindNode.isNodePresent(root, x);
+		
+		System.out.println(ans);
 	}
-	public static int height(BinaryTreeNode<Integer> root) {
-		if (root==null)
-        {
-            return 0;
+
+    static boolean ans = false;
+    public static boolean isNodePresent(BinaryTreeNode<Integer> root, int x) {
+	    if(root == null){
+            return false;
         }
         
-        int smallLeftOutput=height(root.left);
-        int smallRightOutput=height(root.right);
+        if(root.data == x){
+            ans = true;
+        }
         
-        return Math.max(smallLeftOutput,smallRightOutput) +1;
+        isNodePresent(root.left, x);
+       isNodePresent(root.right, x);
+            
+        return ans;
+        
 	}
-
 }

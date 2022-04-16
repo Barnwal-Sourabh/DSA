@@ -1,11 +1,10 @@
-package BinaryTree1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*; 
+import java.util.*;
 
-public class FindNode {
+public class MirrorBinaryTree {
 
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -55,29 +54,55 @@ public class FindNode {
 		return root;
 	}
 
-	public static void main(String[] args) throws NumberFormatException, IOException {
-		BinaryTreeNode<Integer> root = takeInput();
-		int x = Integer.parseInt(br.readLine().trim());
 
-		boolean ans = FindNode.isNodePresent(root, x);
-		
-		System.out.println(ans);
+	private static void printLevelWise(BinaryTreeNode<Integer> root){
+		Queue<BinaryTreeNode<Integer>>  primary = new LinkedList<>();
+		Queue<BinaryTreeNode<Integer>>  secondary = new LinkedList<>();
+
+		primary.add(root);
+
+		while(!primary.isEmpty()){
+			BinaryTreeNode<Integer> current=null;
+			try {
+				current = primary.poll();
+			} catch (Exception e) {
+				System.out.println("Not possible");
+			}
+			System.out.print(current.data + " ");
+			if(current.left != null){
+				secondary.add(current.left);
+			}
+			if(current.right != null){
+				secondary.add(current.right);
+			}
+			if(primary.isEmpty()){
+		        Queue<BinaryTreeNode<Integer>>  temp = secondary;
+				secondary = primary;
+				primary = temp;
+				System.out.println();
+			}
+		}
 	}
 
-    static boolean ans = false;
-    public static boolean isNodePresent(BinaryTreeNode<Integer> root, int x) {
-	    if(root == null){
-            return false;
-        }
-        
-        if(root.data == x){
-            ans = true;
-        }
-        
-        isNodePresent(root.left, x);
-       isNodePresent(root.right, x);
-            
-        return ans;
-        
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BinaryTreeNode<Integer> root = takeInput();
+		
+		MirrorBinaryTree.mirrorBinaryTree(root);
+		printLevelWise(root);
+		
+	}
+
+    public static void mirrorBinaryTree(BinaryTreeNode<Integer> root){
+			if(root == null){
+				return;
+			}
+			
+			BinaryTreeNode<Integer> temp = root.left;
+			root.left = root.right;
+			root.right = temp;
+			
+			mirrorBinaryTree(root.left);
+			mirrorBinaryTree(root.right);
+		
 	}
 }
