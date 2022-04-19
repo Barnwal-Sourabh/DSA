@@ -8,7 +8,7 @@ public class LevelOrderTraversal {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 	public static BinaryTreeNode<Integer> takeInput() throws NumberFormatException, IOException {
-		QueueUsingLL<BinaryTreeNode<Integer>>  pendingNodes = new QueueUsingLL<BinaryTreeNode<Integer>>(); 
+		Queue<BinaryTreeNode<Integer>>  pendingNodes = new LinkedList<BinaryTreeNode<Integer>>(); 
 		int start = 0;
 
 		String[] nodeDatas = br.readLine().trim().split(" ");
@@ -21,13 +21,13 @@ public class LevelOrderTraversal {
 		start += 1;
 
 		BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(rootData);
-		pendingNodes.enqueue(root);
+		pendingNodes.add(root);
 
 		while(!pendingNodes.isEmpty()){
 			BinaryTreeNode<Integer> currentNode;
 			try {
-				currentNode = pendingNodes.dequeue();
-			} catch (QueueEmptyException e) {
+				currentNode = pendingNodes.poll();
+			} catch (Exception e) {
 				return null;
 			}
 
@@ -37,7 +37,7 @@ public class LevelOrderTraversal {
 			if(leftChildData != -1){
 				BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<Integer>(leftChildData);
 				currentNode.left = leftChild;
-				pendingNodes.enqueue(leftChild);
+				pendingNodes.add(leftChild);
 			}
 
 			int rightChildData = Integer.parseInt(nodeDatas[start]);
@@ -46,7 +46,7 @@ public class LevelOrderTraversal {
 			if(rightChildData != -1){
 				BinaryTreeNode<Integer> rightChild = new BinaryTreeNode<Integer>(rightChildData);
 				currentNode.right = rightChild;
-				pendingNodes.enqueue(rightChild);
+				pendingNodes.add(rightChild);
 			}
 		}
 
