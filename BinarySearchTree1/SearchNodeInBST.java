@@ -5,15 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.*;
-class BinaryTreeNode<T> {
-	T data;
-	BinaryTreeNode<T> left;
-	BinaryTreeNode<T> right;
 
-	public BinaryTreeNode(T data) {
-		this.data = data;
-	}
-}
 
 public class SearchNodeInBST {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));;
