@@ -62,16 +62,17 @@ public class BstSortedLL {
 		}
 	}
 
-    static class pair{
+	static class pair{
         LinkedListNode<Integer> head;
         LinkedListNode<Integer> tail;
     }
     public static LinkedListNode<Integer> constructLinkedList(BinaryTreeNode<Integer> root) {
         pair ans = helper(root);
         return ans.head;
-	}
-    public static pair helper(BinaryTreeNode<Integer> root){
-        if(root == null){
+    }
+
+    private static pair helper(BinaryTreeNode<Integer> root){
+        if(root==null){
             pair output = new pair();
             output.head = null;
             output.tail = null;
@@ -84,13 +85,16 @@ public class BstSortedLL {
         if(lefttree.head != null){
             output.head = lefttree.head;
             lefttree.tail.next = newNode;
-        }else {
+        }else{
             output.head = newNode;
         }
-
         newNode.next = righttree.head;
-        output.tail = righttree.tail;
-         return output;
+        if(righttree.head == null){
+            output.tail = newNode;
+        }else{
+            output.tail = righttree.tail;
+        }
+        return output;
     }
 
 }
