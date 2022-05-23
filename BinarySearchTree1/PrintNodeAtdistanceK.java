@@ -62,51 +62,49 @@ public class PrintNodeAtdistanceK {
 
 		PrintNodeAtdistanceK.nodesAtDistanceK(root, target, k);
 	}
-    public static void nodesAtDistanceK(BinaryTreeNode<Integer> root,int node,int k) {
-        nodesAtDistanceKWithRootDistance(root, node, k);
+    public static void nodesAtDistanceK(BinaryTreeNode<Integer> root, int node, int k) {
+        //Your code goes here
+        print(root,k,node);
     }
-    public static int nodesAtDistanceKWithRootDistance(BinaryTreeNode<Integer> root,int node,int k) {
-        if(root==null)
+    public static int print(BinaryTreeNode<Integer> root,int k,int elem){
+        if(root == null){
             return -1;
-
-        if(root.data == node) {
-
-            printNodesDown(root,k);
+        }
+        if(root.data == elem){
+            printAtDepthK(root,k);
             return 0;
         }
-        int leftHeight = nodesAtDistanceKWithRootDistance(root.left, node, k);
-        if(leftHeight!=-1) {
-            if(leftHeight+1 == k) {
+        int ld = print(root.left,k,elem);
+        int rd;
+        if(ld == -1){
+            rd = print(root.right,k,elem);
+            if(rd == -1){
+                return -1;
+            }else if(rd + 1 == k){
                 System.out.println(root.data);
+                return k;
+            }else{
+                printAtDepthK(root.left,k-rd-2);
+                return rd+1;
             }
-            else {
-                printNodesDown(root.right, k-leftHeight-2);
-                
-            }
-            return leftHeight+1;
-        }
-        int rightHeight = nodesAtDistanceKWithRootDistance(root.right, node, k);
-        if(rightHeight!=-1) {
-            if(rightHeight+1 == k) {
-                System.out.println(root.data);
-            }
-            else {
-                printNodesDown(root.left, k-rightHeight-2);
-            }
-            return rightHeight+1;
-        }
-        return -1;
-
-    }
-    private static void printNodesDown(BinaryTreeNode<Integer> root, int k) {
-        if(root==null) {
-            return ;
-        }
-        if(k==0) {
+        }else if(ld + 1 == k){
             System.out.println(root.data);
-            return ;
+            return k;
+        }else{
+            printAtDepthK(root.right,k-ld-2);
+            return ld+1;
         }
-        printNodesDown(root.left, k-1);
-        printNodesDown(root.right, k-1);
-	}
+    }
+    public static void printAtDepthK(BinaryTreeNode<Integer> root,int depth){
+        if(root == null){
+            return;
+        }
+        if(depth == 0 && root != null){
+            System.out.println(root.data);
+            return;
+        }
+        printAtDepthK(root.left,depth-1);
+        printAtDepthK(root.right,depth-1);
+    }
+
 }
