@@ -19,8 +19,13 @@ public class ComplexNumberUse {
 		c3.print();
 		c2.print();
 		
-		
-		
+		ComplexNumber c4 =  ComplexNumber.add(c1,c3);
+		c1.print();
+		c3.print();
+		c4.print();
+
+		ComplexNumber c5 = c1.conjugate();
+		c5.print();
 		
 	}
 
