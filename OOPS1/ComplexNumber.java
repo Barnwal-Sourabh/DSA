@@ -25,13 +25,7 @@ public class ComplexNumber {
     }
 
     public void print(){
-        if(imaginary > 1){
-            System.out.println(real +" + i"+imaginary);
-        }else if(imaginary == 1) {
-            System.out.println(real +" + i");
-        }else {
-            System.out.println(real);
-        }
+        System.out.println(real +" + i"+imaginary);
     }
 
     public void add(ComplexNumber c2){
@@ -47,7 +41,18 @@ public class ComplexNumber {
         this.imaginary = i;
     }
 
+    public static ComplexNumber add(ComplexNumber c1, ComplexNumber c2 ){
+        int newReal = c1.real + c2.real;
+        int newImaginary = c1.imaginary + c2.imaginary;
+        ComplexNumber c = new ComplexNumber(newReal, newImaginary);
+        return c;
+    }
     
-
+    public ComplexNumber conjugate(){
+        int newReal = real;
+        int newImaginary =- imaginary; 
+        ComplexNumber c = new ComplexNumber(newReal, newImaginary);
+        return c;
+    }
    
 }
