@@ -9,6 +9,7 @@ public class TrieUse {
         t.add("news");
 
         System.out.println(t.search("bat"));
-        System.out.println(t.search("new"));
+        t.remove("bat");
+        System.out.println(t.search("bat"));
     }
 }
