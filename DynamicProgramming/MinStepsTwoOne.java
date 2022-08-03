@@ -71,18 +71,18 @@ public class MinStepsTwoOne {
         storage[1] = 0;
 
         for(int i =2; i<=n; i++){
-            int max = storage[i-1];
+            int min = storage[i-1];
             if(i % 3 == 0){
-                if(max > storage[i/3]){
-                    max = storage[i/3];
+                if(min > storage[i/3]){
+                    min = storage[i/3];
                 }
             }
             if(i % 2 == 0){
-                if(max > storage[i/2]){
-                    max = storage[i/2];
+                if(min > storage[i/2]){
+                    min = storage[i/2];
                 }
             }
-            storage[i] = 1 + max;
+            storage[i] = 1 + min;
         }
         return storage[n];
     }
