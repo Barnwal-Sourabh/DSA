@@ -30,7 +30,7 @@ public class LootHouse {
             System.out.println(LootHouse.maxMoneyLooted(arr));
     }
     public static int maxMoneyLooted(int[] houses) {
-		//Your code goes here
+		//  code goes hereYour
         if(houses.length == 0){
             return 0;
         }
@@ -44,5 +44,7 @@ public class LootHouse {
             storage[i] = Math.max(houses[i] + storage[i-2], storage[i-1]);
         }
         return storage[n-1];
-	}
+        
+    }
+	
 }
