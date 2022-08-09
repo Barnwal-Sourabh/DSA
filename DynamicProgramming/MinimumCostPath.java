@@ -27,6 +27,7 @@ public class MinimumCostPath {
         return arr[i][j] + Math.min(opt1, Math.min(opt2, opt3));
     }
 
+    //Memoization
     public static int minCostPathM(int arr[][]){
         int m = arr.length;
         int n = arr[0].length;
