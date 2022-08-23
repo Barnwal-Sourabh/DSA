@@ -2,78 +2,72 @@ package Graphs;
 
 import java.util.*;
 
-class Edge implements Comparable<Edge>{
+class Edge implements Comparable<Edge> {
 	int source;
 	int dest;
 	int weight;
-	
+
 	public int compareTo(Edge o) {
 		return this.weight - o.weight;
 	}
-	
 }
 
 public class KrushKalAlgorithm {
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int n = scanner.nextInt();
-		int e = scanner.nextInt();
-		Edge[] input = new Edge[e];
-		for(int i=0;i<e;i++) {
-			int sv = scanner.nextInt();
-			int ev = scanner.nextInt();
-			int weight = scanner.nextInt();
-			Edge edge = new Edge();
-			edge.source = sv;
-			edge.dest = ev;
-			edge.weight = weight;
-			input[i] = edge;
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int e = sc.nextInt();
+
+		Edge input[] = new Edge[n - 1];
+		for (int i = 0; i < e; i++) {
+			input[i] = new Edge();
+			input[i].source = sc.nextInt();
+			input[i].dest = sc.nextInt();
+			input[i].weight = sc.nextInt();
 		}
-		Arrays.sort(input);
-		kruskals(input,n);
-		scanner.close();
+		
+		krushKal(input, n);
+		sc.close();
 	}
 
-	public static void kruskals(Edge[] input, int n) {
-		
-		Edge[] output = new Edge[n-1];
-		int[] parent = new int[n];
-		for(int i=0;i<parent.length;i++) {
+	private static void krushKal(Edge[] input, int n) {
+		//Arrays.sort(input);
+		Edge output[] = new Edge[n - 1];
+
+		int parent[] = new int[n];
+		for (int i = 0; i < n; i++) {
 			parent[i] = i;
 		}
-		int count =0;
-		int i=0;
-		while(count<n-1) {
-			
-			int parentSource = findParent(parent,input[i].source);
-			int parentDest = findParent(parent,input[i].dest);
-			
-			if(parentDest == parentSource) {
-				i++;
-				continue;
+
+		int count = 0;
+		int i = 0;
+
+		while (count < n - 1) {
+			Edge currentEdge = input[i];
+			int sourceParent = findParent(currentEdge.source, parent);
+			int destParent = findParent(currentEdge.dest, parent);
+
+			if (sourceParent != destParent) {
+				output[count] = currentEdge;
+				count++;
+				parent[sourceParent] = destParent;
 			}
-			output[count] = input[i];
-			parent[parentSource] = parentDest;
-			count++;
 			i++;
 		}
-		
-		for(Edge edge : output) {
-			if(edge.source < edge.dest)
-			System.out.println( edge.source +" "+ edge.dest+" "+ edge.weight);
-			else {
-				System.out.println(edge.dest+" "+ edge.source+" " + edge.weight);
+
+		for (Edge edge : output) {
+			if (edge.source < edge.dest) {
+				System.out.println(edge.source + " " + edge.dest + " " + edge.weight);
+			} else {
+				System.out.println(edge.dest + " " + edge.source + " " + edge.weight);
 			}
-			
-			
 		}
-		
 	}
 
-	public static int findParent(int[] parent, int i) {
-		if(parent[i] == i) {
-			return i;
+	private static int findParent(int v, int[] parent) {
+		if (parent[v] == v) {
+			return v;
 		}
-		return findParent(parent, parent[i] );
+		return findParent(parent[v], parent);
 	}
 }
