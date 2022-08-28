@@ -7,7 +7,8 @@ public class NQueens {
     public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		int n = s.nextInt();
-		NQueens.placeNQueens(n);	
+		NQueens.placeNQueens(n);
+        s.close();	
 	}
     
     public static void placeNQueens(int N)
