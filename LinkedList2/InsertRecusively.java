@@ -1,4 +1,4 @@
-package LinkedList2;
+
 public class InsertRecusively extends LInkedListUse{
     
     public static Node<Integer> insert(Node<Integer> head, int pos, int elem){

@@ -1,4 +1,4 @@
-package LinkedList2;
+
 
 public class LinkedListNode<T> {
     T data;

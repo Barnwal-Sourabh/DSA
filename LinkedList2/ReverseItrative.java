@@ -1,4 +1,4 @@
-package LinkedList2;
+
 
 class ReverseItrative extends LInkedListUse{
 
