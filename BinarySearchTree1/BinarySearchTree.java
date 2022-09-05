@@ -3,8 +3,6 @@ package BinarySearchTree1;
 import java.io.*;
 import java.util.*;
 
-import BinaryTree1.BinaryTreeNode;
-
 public class BinarySearchTree {
 
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

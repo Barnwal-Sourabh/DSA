@@ -1,6 +1,5 @@
 package BinarySearchTree1;
 
-import BinaryTree1.BinaryTreeNode;
 
 public class CheckBST3 {
     
